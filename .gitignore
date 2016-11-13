@@ -1,0 +1,12 @@
+# .gitignore
+
+!.gitignore
+
+#
+*.o
+*.obj
+
+#
+*.sw?
+~*
+*.bak
