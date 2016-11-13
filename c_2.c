@@ -293,6 +293,30 @@ int main()
 	printf("addTwoNumbers: "); printList(addTwoNumbers(n1,n2));
 
 //
+	printf("n1: "); printList(n1=build_n1(_case1_));
+	printf("n2: "); printList(n2=build_n2(_case1_));
+	printf("add n1 & n2: "); printList(addLists(n1, n2));
+	printf("addTwoNumbers: "); printList(addTwoNumbers(n1,n2));
+
+//
+	printf("n1: "); printList(n1=build_n1(_case2_));
+	printf("n2: "); printList(n2=build_n2(_case2_));
+	printf("add n1 & n2: "); printList(addLists(n1, n2));
+	printf("addTwoNumbers: "); printList(addTwoNumbers(n1,n2));
+
+//
+	printf("n1: "); printList(n1=build_n1(_case3_));
+	printf("n2: "); printList(n2=build_n2(_case3_));
+	printf("add n1 & n2: "); printList(addLists(n1, n2));
+	printf("addTwoNumbers: "); printList(addTwoNumbers(n1,n2));
+
+//
+	printf("n1: "); printList(n1=build_n1(_case4_));
+	printf("n2: "); printList(n2=build_n2(_case4_));
+	printf("add n1 & n2: "); printList(addLists(n1, n2));
+	printf("addTwoNumbers: "); printList(addTwoNumbers(n1,n2));
+
+//
 	printf("n1: "); printList(n1=build_n1(_case5_));
 	printf("n2: "); printList(n2=build_n2(_case5_));
 	printf("add n1 & n2: "); printList(addLists(n1, n2));
