@@ -18,11 +18,13 @@
 #		age 21 30
 #	
 
+if [ ! -f file.txt ]; then
 cat > file.txt <<_end_
 name age
 alice 21
 ryan 30
 _end_
+fi
 
 #cat file.txt | awk -e '{ for (i=1;i<=NF;i++) { z[NR][i]=$i ; print NR,i,z[NR][i]; if (NF>maxNF) { maxNF=NF;} } } END { for(i=1;i<=NR;i++) { for(j=1;j<=maxNF;j++) { print z[i][j]; line=(line " " z[i][j])}; print line; line="" }  }'
 

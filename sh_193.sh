@@ -22,6 +22,7 @@
 #		(123) 456-7890
 #	
 
+if [ ! -f file.txt ]; then
 cat > file.txt <<_end_
 123-456-7890
 (123) 456-7890
@@ -29,6 +30,7 @@ cat > file.txt <<_end_
 (123) 4-6-7890
 (001) 345-00001
 _end_
+fi
 
 	# not fast enough
 cat file.txt | egrep "^([[:digit:]]{3}-[[:digit:]]{3}-[[:digit:]]{4}|\([[:digit:]]{3}\) [[:digit:]]{3}-[[:digit:]]{4})$"

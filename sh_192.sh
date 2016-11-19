@@ -23,10 +23,12 @@
 #	day 1
 #	
 
+if [ ! -f words.txt ]; then
 cat > words.txt <<_end_
 the day is sunny the the
 the sunny is is
 _end_
+fi
 
 	# <wong>
 	#	1. cat file into built-in for to dissect input into words
@@ -59,14 +61,14 @@ cat words.txt | awk -e '{ for (i=1;i<=NF;i++) { ++z[$i] }} END { for (var in z) 
 ## experiment with sorting awk associative arry
 #
 
-echo "----exp-"
+echo "----experiment-"
 cat words.txt | awk -e '{ for (i=1;i<=NF;i++) { ++z[$i] }} END { for (var in z) { print var,z[var] }}'
 ### cat words.txt | awk -e '{ for (i=1;i<=NF;i++) { ++z[$i] }} END { n=asorti(z,nz); for (i=1;i<=n;i++) { print nz[i],z[nz[i]] }}'
-echo "----exp-asort-"
+echo "----experiment-asort-"
 cat words.txt | awk -e '{ for (i=1;i<=NF;i++) { ++z[$i] }} END { n=asort(z,nz); for(i=1;i<=n;i++) print nz[i]; for (var in nz) print var,nz[var] }'
-echo "----exp-asorti-"
+echo "----experiment-asorti-"
 cat words.txt | awk -e '{ for (i=1;i<=NF;i++) { ++z[$i] }} END { n=asorti(z,nz); for(i=1;i<=n;i++) print nz[i]; for (var in nz) print var,nz[var] }'
-echo "----exp-gawk-PROCINFO-"
+echo "----experiment-gawk-PROCINFO-"
 	# https://www.gnu.org/software/gawk/manual/html_node/Controlling-Scanning.html
 cat words.txt | awk -e '{ for (i=1;i<=NF;i++) { ++z[$i] }} END { PROCINFO["sorted_in"] = "@val_num_desc"; for (var in z) print var,z[var] }'
 
