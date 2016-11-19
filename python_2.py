@@ -1,4 +1,11 @@
 """
+//https://leetcode.com/problems/add-two-numbers/
+#
+# 2. Add Two Numbers
+#
+#	You are given two linked lists representing two non-negative numbers. The digits are stored
+#	in reverse order and each of their nodes contain a single digit. Add the two numbers and
+#	return it as a linked list.
 #
 #       Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 #
@@ -33,7 +40,7 @@ def buildList(nums):
 		if prev != None: prev.next = node
 		prev = node
 ##		print "prev", prev.val
-##	printList(head)
+##	if head: printList(head)
 	return head
 
 #class Solution(object):
@@ -45,8 +52,13 @@ def buildList(nums):
 #        """
 
 def addLists(l1,l2):
-#	print "L1", printList(l1)
-#	print "L2", printList(l2)
+	"""
+	# debug
+	print "L1",
+	if l1: printList(l1)
+	print "L2",
+	if l2: printList(l2)
+	"""
 	carryOver = 0
 	z = []
 	while l1 != None or l2 != None:
