@@ -10,3 +10,9 @@
 *.sw?
 ~*
 *.bak
+
+# built executables
+c_2
+c++_347
+c_9
+c++_9
