@@ -1,0 +1,12 @@
+#
+#	
+	# For c++_5_longest-palindromic-string
+del disp
+disp jx
+disp jy
+disp str[jx]
+disp str[jy]
+disp str[kx]
+disp str[ky]
+disp kx
+disp ky

@@ -11,9 +11,14 @@
 ~*
 *.bak
 
+# as an example
+testprog*		# anything starts with testprog will be ignored
+!testprog.*		# except those with extension (.*)
+
 # built executables
 c_2
 c++_347
 c_9
 c++_9
 c++_26
+c++_5_longest-palindromic-string
