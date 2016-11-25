@@ -39,49 +39,6 @@ void swap(std::string & str)
 //*	return str;
 }
 
-// incomplete: cannot handle superLong case
-std::string twoStrsPalindromic(const std::string & str, const std::string &swapped)
-{
-	int lms, llen;
-	const int end = (str.size() / 2) + (str.size() % 2);
-
-		lms = llen = -1;
-		for (int jx=0, jy=0; jx <= end; /**/)
-///		for (int jx=0, jy=0; jx < str.size(); /**/)
-		{
-			if (str[jx] != swapped[jy]) {
-				// move ahead until a match
-				for (/**/; jy <= end && (str[jx]!=swapped[jy]); jy++) /**/;
-///				for (/**/; jy < str.size() && (str[jx]!=swapped[jy]); jy++) /**/;
-				if (jy > end)
-///				if (jy == str.size())
-				{
-					// no match found, continue with next character in original
-					jx++; jy=0;
-					continue;
-				}
-			}
-			// a match found. try to stretch the match
-			int kx = jx, ky = jy;
-			while (str[kx] == swapped[ky]) {
-				kx++; ky++;
-			}
-			//** if ((lms < 0) || ((kx-jx) > llen))
-			if (lms < 0) {
-				// no match before
-				lms = jx; llen = kx-jx;
-			}
-			else if ((kx-jx) > llen) {
-				// longer match found
-				lms = jx; llen = kx-jx;
-			}
-			jx++; jy=0;
-		}
-		printf("%s: lms=%d, llen=%d, match=%s\n", __FUNCTION__, lms, llen, (lms>=0) ? str.substr(lms, llen).c_str() : "");		
-
-	return (lms>=0) ? str.substr(lms, llen).c_str() : "";
-}
-
 /*
  * this approach is to reverse the original string and 
  * compare original and reversed string BOTH from the beginning of the string
@@ -89,7 +46,7 @@ std::string twoStrsPalindromic(const std::string & str, const std::string &swapp
     302ms for all test leetcode cases
     14.23% leetcode ranking
  */
-std::string twoStrsPalindromic_v2(const std::string & str, const std::string &swapped)
+std::string twoStrsPalindromic_v2(const std::string & str, const std::string & swapped)
 {
 	int lms, llen;
 	const int end = (str.size() / 2) + (str.size() % 2);
