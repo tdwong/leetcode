@@ -225,28 +225,290 @@ free(sofar);
 	return (lms>=0) ? sstr: "";
 }
 
+char * shortCases[] = 
+{
+	"test",		// -> t / e / s / t
+	"cases",	// -> ses
+	"babad",	// -> aba / bad
+	"cbbd",		// -> bb
+	"xyz",		// -> x / y / z
+	"xyzy",		// -> yzy
+	"xyzz",		// -> zz
+	"ccd",		// -> cc
+	"aaabaaaa",	// -> aaabaaa
+	"a",		// -> a
+	"bb",		// -> bb
+};
 char * superLongs[] =
 {
 "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"
+	// -> ranynar
 ,
 "ibvjkmpyzsifuxcabqqpahjdeuzaybqsrsmbfplxycsafogotliyvhxjtkrbzqxlyfwujzhkdafhebvsdhkkdbhlhmaoxmbkqiwiusngkbdhlvxdyvnjrzvxmukvdfobzlmvnbnilnsyrgoygfdzjlymhprcpxsnxpcafctikxxybcusgjwmfklkffehbvlhvxfiddznwumxosomfbgxoruoqrhezgsgidgcfzbtdftjxeahriirqgxbhicoxavquhbkaomrroghdnfkknyigsluqebaqrtcwgmlnvmxoagisdmsokeznjsnwpxygjjptvyjjkbmkxvlivinmpnpxgmmorkasebngirckqcawgevljplkkgextudqaodwqmfljljhrujoerycoojwwgtklypicgkyaboqjfivbeqdlonxeidgxsyzugkntoevwfuxovazcyayvwbcqswzhytlmtmrtwpikgacnpkbwgfmpavzyjoxughwhvlsxsgttbcyrlkaarngeoaldsdtjncivhcfsaohmdhgbwkuemcembmlwbwquxfaiukoqvzmgoeppieztdacvwngbkcxknbytvztodbfnjhbtwpjlzuajnlzfmmujhcggpdcwdquutdiubgcvnxvgspmfumeqrofewynizvynavjzkbpkuxxvkjujectdyfwygnfsukvzflcuxxzvxzravzznpxttduajhbsyiywpqunnarabcroljwcbdydagachbobkcvudkoddldaucwruobfylfhyvjuynjrosxczgjwudpxaqwnboxgxybnngxxhibesiaxkicinikzzmonftqkcudlzfzutplbycejmkpxcygsafzkgudy"
+	// -> fklkf
 ,
 "tuygqgsikxctvpxrqtuhxreidhwcklkkjayvqdzqqapgdqaapefzjfngdvjsiiivnkfimqkkucltgavwlakcfyhnpgmqxgfyjziliyqhugphhjtlllgtlcsibfdktzhcfuallqlonbsgyyvvyarvaxmchtyrtkgekkmhejwvsuumhcfcyncgeqtltfmhtlsfswaqpmwpjwgvksvazhwyrzwhyjjdbphhjcmurdcgtbvpkhbkpirhysrpcrntetacyfvgjivhaxgpqhbjahruuejdmaghoaquhiafjqaionbrjbjksxaezosxqmncejjptcksnoq"
+	// -> yvvy
 ,
 "esbtzjaaijqkgmtaajpsdfiqtvxsgfvijpxrvxgfumsuprzlyvhclgkhccmcnquukivlpnjlfteljvykbddtrpmxzcrdqinsnlsteonhcegtkoszzonkwjevlasgjlcquzuhdmmkhfniozhuphcfkeobturbuoefhmtgcvhlsezvkpgfebbdbhiuwdcftenihseorykdguoqotqyscwymtjejpdzqepjkadtftzwebxwyuqwyeegwxhroaaymusddwnjkvsvrwwsmolmidoybsotaqufhepinkkxicvzrgbgsarmizugbvtzfxghkhthzpuetufqvigmyhmlsgfaaqmmlblxbqxpluhaawqkdluwfirfngbhdkjjyfsxglsnakskcbsyafqpwmwmoxjwlhjduayqyzmpkmrjhbqyhongfdxmuwaqgjkcpatgbrqdllbzodnrifvhcfvgbixbwywanivsdjnbrgskyifgvksadvgzzzuogzcukskjxbohofdimkmyqypyuexypwnjlrfpbtkqyngvxjcwvngmilgwbpcsseoywetatfjijsbcekaixvqreelnlmdonknmxerjjhvmqiztsgjkijjtcyetuygqgsikxctvpxrqtuhxreidhwcklkkjayvqdzqqapgdqaapefzjfngdvjsiiivnkfimqkkucltgavwlakcfyhnpgmqxgfyjziliyqhugphhjtlllgtlcsibfdktzhcfuallqlonbsgyyvvyarvaxmchtyrtkgekkmhejwvsuumhcfcyncgeqtltfmhtlsfswaqpmwpjwgvksvazhwyrzwhyjjdbphhjcmurdcgtbvpkhbkpirhysrpcrntetacyfvgjivhaxgpqhbjahruuejdmaghoaquhiafjqaionbrjbjksxaezosxqmncejjptcksnoq"
+	// -> yvvy
 ,
 "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+	// -> ggg...ggg
 ,
 "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+	// -> zzz...zzz
 ,
 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+	// -> aaa...aaa
 ,
 };
+
+static void testShortCases_Split(void);
+static void testSuperLongs_Split(void);
+static void testShortCases(void);
+static void testSuperLongs(void);
+
+/*****************************************
+ * 2016-11-25
+ */
+
+// return  >0: lms & llen updated
+// return ==0: no change
+int matchLongest(char *str, const int slen, int lhs, int rhs, int *lms, int *llen)
+{
+	int change = 0;
+
+//printf("str=%s, slen=%d, lhs=%d, rhs=%d, lms=%d, llen=%d\n", str, slen, lhs, rhs, *lms, *llen);
+
+	while ((str[lhs] == str[rhs]) && (0 <= lhs) && (rhs < slen)) {
+		lhs--; rhs++;
+		change++;
+	}
+	if ((rhs-lhs-1) > *llen) {
+		// a longer match found
+		*lms = lhs+1;
+		*llen = (rhs-lhs-1);
+//printf("lms=%d, llen=%d, change=%d\n", *lms, *llen, change);
+	}
+	else { change = 0; }
+	return change;
+}
+/*
+ * this approach is to 
+ * expand from the middle of the given string for two possible palindromic string length (odd-length and even-length)
+ * e.g.
+ *   odd-length:	bbabb
+ *  even-length:	zzxxzz
+ *
+ * WOW.  Super fast solution (in terms of  time), the ranking is very good 
+ *
+    3ms for all test leetcode cases
+    79.94% leetcode ranking
+ */
+char *splitStrPalindromic(char *str)
+{
+	const int slen = strlen(str);
+	int lms = -1, llen = -1;
+	int changed;
+
+	// corner case
+	if (strlen(str) == 1) { return strdup(str); }
+	if (strlen(str) == 2) {
+		return strdup( (str[0] == str[1]) ? str : "" );
+	}
+
+	//
+	// odd-length string
+	//
+	if ((slen%2) == 1) {
+		int idx;	// moving index
+
+		// odd-length palindromic string
+		//
+		// start with the mid-point
+		const int midp = (slen/2);
+		changed = matchLongest(str, slen, midp-1, midp+1, &lms, &llen); 
+
+		idx = midp;
+		/***[[[odd-length-moving-rightward]]]***/
+		while (++idx <= (slen-2)) {
+			// continue with midp++
+				// corner case
+				if (((slen-idx)*2)-1 <= llen) {
+					// cannot find a longer match
+					break;
+				}
+			changed = matchLongest(str, slen, idx-1, idx+1, &lms, &llen); 
+		}
+
+		idx = midp;
+		/***[[[odd-length-moving-leftward]]]***/
+		while (0 <= --idx) {
+			// continue with midp--
+				// corner case
+				if ((idx*2)+1 <= llen) {
+					// cannot find a longer match
+					break;
+				}
+			changed = matchLongest(str, slen, idx-1, idx+1, &lms, &llen); 
+		}
+
+		// even-length palindromic string
+		idx = midp;
+		/***[[[even-length-moving-rightward]]]***/
+		while (idx < (slen-1)) {
+			if (str[idx]==str[idx+1]) {
+					// corner case
+					if ((((slen-idx)*2)-2) <= llen) {
+						// cannot find a longer match
+						break;
+					}
+				changed = matchLongest(str, slen, idx-1, idx+2, &lms, &llen); 
+			}
+
+			// continue with midp++
+			idx++;
+		}
+
+		// even-length palindromic string
+		idx = midp-1;
+		/***[[[even-length-moving-leftward]]]***/
+		while (0 <= idx) {
+			if (str[idx]==str[idx+1]) {
+				// corner case
+					if (((idx*2)+2) <= llen) {
+						// cannot find a longer match
+						break;
+					}
+				changed = matchLongest(str, slen, idx-1, idx+2, &lms, &llen); 
+			}
+
+			// continue with midp--
+			idx--;
+		}
+
+	}	//if ((slen%2) == 1)
+	//
+	// even-length string
+	//
+	else {
+		int idx;	// moving index
+
+		// even-length palindromic string
+		//
+		// start with the 2 mid-pointS
+		const int midl = (strlen(str)/2)-1, midr = strlen(str)/2;
+
+		idx = midr;
+		/***[[[even-length-moving-rightward]]]***/
+		while (idx < (slen-1)) {
+			if (str[idx] == str[idx+1]) {
+					// corner case
+					if ((((slen-idx)*2)-2) <= llen) {
+						// cannot find a longer match
+						break;
+					}
+				changed = matchLongest(str, slen, idx-1, idx+2, &lms, &llen); 
+			}
+
+			// continue with midl++,midr++
+			idx++;
+		}
+
+		idx = midl;
+		/***[[[even-length-moving-leftward]]]***/
+		while (0 <= idx) {
+			if (str[idx]==str[idx+1]) {
+				// corner case
+					if (((idx*2)+2) <= llen) {
+						// cannot find a longer match
+						break;
+					}
+				changed = matchLongest(str, slen, idx-1, idx+2, &lms, &llen); 
+			}
+
+			// continue with midl--,midr--
+			idx--;
+		}
+
+		// odd-length palindromic string
+		//
+		// start with the mid-point right
+		idx = midr;
+		/***[[[odd-length-moving-rightward]]]***/
+		while (idx <= (slen-2)) {
+				// corner case
+				if (((slen-idx)*2)-1 <= llen) {
+					// cannot find a longer match
+					break;
+				}
+			changed = matchLongest(str, slen, idx-1, idx+1, &lms, &llen); 
+
+			// continue with midr++
+			idx++;
+		}
+
+		//
+		// start with the mid-point left
+		idx = midl;
+		/***[[[odd-length-moving-leftward]]]***/
+		while (0 <= idx) {
+			// continue with midp--
+				// corner case
+				if ((idx*2)+1 <= llen) {
+					// cannot find a longer match
+					break;
+				}
+			changed = matchLongest(str, slen, idx-1, idx+1, &lms, &llen); 
+
+			// continue with midl--
+			idx--;
+		}
+
+	}	//else
+
+// printf("lms=%d, llen=%d\n", lms, llen);
+	if (llen > 0) {
+		char *sstr = malloc(llen+1);
+		strncpy(sstr, &str[lms], llen);
+		sstr[llen] = 0;
+		return sstr;
+	}
+	else { return strdup(""); }
+}
+
 
 int main(int argc, char **argv)
 {
 	int ix;
+	char *progName = argv[0];
 
+	// parse argument
+	while (argc > 1) {
+		if ((strcmp(argv[1], "-h") == 0) || (strcmp(argv[1], "--help") == 0)) {
+			printf("%s [-ts] [-tl] test-string ...\n", progName);
+			exit(0);
+		}
+		else if (strcmp(argv[1], "-tss") == 0) {	/* test short cases */
+			testShortCases_Split();
+			argc--; argv++;
+		}
+		else if (strcmp(argv[1], "-ts") == 0) {	/* test short cases */
+			testShortCases();
+			argc--; argv++;
+		}
+		else if (strcmp(argv[1], "-tls") == 0) {	/* test superLongs */
+			testSuperLongs_Split();
+			argc--; argv++;
+		}
+		else if (strcmp(argv[1], "-tl") == 0) {	/* test superLongs */
+			testSuperLongs();
+			argc--; argv++;
+		}
+		else { break; }
+	}
+ 
 	for (ix = 1; ix < argc; ix++) {
 
 		printf("-------\n");
@@ -258,6 +520,8 @@ int main(int argc, char **argv)
 
 		int lms, llen;
 		const int end = (strlen(str) / 2) + (strlen(str) % 2);
+
+#  if	0
 
 #define _do_swap_	1
 #ifdef _do_swap_
@@ -272,13 +536,66 @@ int main(int argc, char **argv)
 		//char * ns2 = sameStrPalindromic_v2(swapped);
 		//printf("_no_swap_: match=%s\n", strlen(ns1)>strlen(ns2) ? ns1 : ns2);
 
+#  else
+
+		char * ss1 = splitStrPalindromic(str);
+		printf("_do_split_: (len=%d) match=%s\n", (int)strlen(ss1), ss1);
+		free(ss1);
+
+#  endif
+
 		//
 		free(swapped);
 	}
 
-	// done with all provided cases (on command line)
-	if (argc > 1) { return 0; }
+	return 0;
+}
 
+void testShortCases_Split(void)
+{
+	for (int isl = 0; isl < (sizeof(shortCases)/sizeof(char *)); isl++) {
+		printf("shortCases[%d].size=%ld: %s\n", isl, strlen(shortCases[isl]), shortCases[isl]);
+		//
+		char *str = shortCases[isl];
+		char * s01=splitStrPalindromic(str);
+		printf("%s: [%s] -> %s\n", __FUNCTION__, str, s01);
+		free(s01);
+	}
+	return;
+}
+
+void testSuperLongs_Split(void)
+{
+	for (int isl = 0; isl < (sizeof(superLongs)/sizeof(char *)); isl++) {
+		printf("superLongs[%d].size=%ld: %s\n", isl, strlen(superLongs[isl]), superLongs[isl]);
+		//
+		char *str = superLongs[isl];
+		char * s01=splitStrPalindromic(str);
+		printf("%s: [%s] -> %s\n", __FUNCTION__, str, s01);
+		free(s01);
+	}
+	return;
+}
+
+void testShortCases(void)
+{
+	char * swapped;
+	for (int isl = 0; isl < (sizeof(shortCases)/sizeof(char *)); isl++) {
+		printf("shortCases[%d].size=%ld: %s\n", isl, strlen(shortCases[isl]), shortCases[isl]);
+		//
+		char *str = shortCases[isl];
+		char *swapped = strdup(shortCases[isl]);
+		reverse(swapped);
+		printf("  reversed shortCases[%d]: %s\n", isl, swapped);
+		char * s01=sameStrPalindromic_v2(str);
+		char * s02=twoStrsPalindromic_v2(str, swapped);
+		free(swapped);
+	}
+	return;
+}
+
+void testSuperLongs(void)
+{
 	char * swapped;
 	for (int isl = 0; isl < (sizeof(superLongs)/sizeof(char *)); isl++) {
 		printf("superLongs[%d].size=%ld: %s\n", isl, strlen(superLongs[isl]), superLongs[isl]);
@@ -286,7 +603,7 @@ int main(int argc, char **argv)
 		char *str = superLongs[isl];
 		char *swapped = strdup(superLongs[isl]);
 		reverse(swapped);
-		printf("swap superLongs[%d]: %s\n", isl, swapped);
+		printf("  reversed superLongs[%d]: %s\n", isl, swapped);
 		char * s01=sameStrPalindromic_v2(str);
 		char * s02=twoStrsPalindromic_v2(str, swapped);
 		free(swapped);
@@ -344,5 +661,6 @@ int main(int argc, char **argv)
 	free(swapped);
 #endif
 
-	return 0;
+	return;
 }
+
