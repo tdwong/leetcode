@@ -1,6 +1,13 @@
 # .gitignore
 a-very-big-sum
 
+# HackerRank java solution related
+#Solution.\{class\,java\}
+#Solution.java
+#Solution.class
+Solution.*
+*.class
+
 # general case for day * solutions
 day-*-*
 !day-*-*.*
