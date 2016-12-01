@@ -2,7 +2,7 @@
 
 #https://www.hackerrank.com/challenges/30-review-loop
 """
-# Day 5: Let's Review
+# Day 6: Let's Review
 # 
 # Objective 
 # 
