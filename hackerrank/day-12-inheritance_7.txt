@@ -1,0 +1,7 @@
+Sancho Panza 4847677
+7
+41 42 43 44 45 46 48
+
+Name: Panza, Sancho
+ID: 4847677
+Grade: D

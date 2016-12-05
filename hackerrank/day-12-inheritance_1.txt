@@ -1,0 +1,7 @@
+David Park 6735139
+8
+100 100 100 100 100 100 100 100
+
+Name: Park, David
+ID: 6735139
+Grade: O
