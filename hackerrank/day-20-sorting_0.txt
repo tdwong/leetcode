@@ -1,0 +1,6 @@
+3
+1 2 3
+ 
+#     Array is sorted in 0 swaps.
+#     First Element: 1
+#     Last Element: 3
