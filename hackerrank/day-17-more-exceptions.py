@@ -61,7 +61,7 @@
 """
 
 ###################################################################
-print "to run: ./day-17-more-exceptions < day-17-more-exceptions.txt"
+print "to run: python ./day-17-more-exceptions.py < day-17-more-exceptions.txt"
 ###################################################################
 
 
