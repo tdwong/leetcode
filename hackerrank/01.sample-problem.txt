@@ -1,0 +1,238 @@
+Sample Problem Statement
+------------------------
+
+Given an integer N, print 'hello world' N times.
+
+Sample Input
+
+	5
+
+Sample Output
+
+	hello world
+	hello world
+	hello world
+	hello world
+	hello world
+
+Solutions by language
+---------------------
+
+C
+=
+
+	#include <stdio.h>
+	int main() {
+		int i, n;
+		scanf("%d", &n);
+		for (i=0; i<n; i++) {
+			printf("hello world\n");
+		}
+		return 0;
+	}
+
+C++
+===
+
+	#include <iostream>
+	using namespace std;
+	int main() {
+		int i, n;
+		cin >> n;
+		for (i=0; i<n; i++) {
+			cout << "hello world\n";
+		}
+		return 0;
+	}
+
+C#
+==
+
+	using System;
+	namespace Solution {
+		class Solution {
+			static void Main(string[] args) {
+				var line1 = System.Console.ReadLine().Trim();
+				var N = Int32.Parse(line1);
+				for (var i = 0; i < N; i++) {
+					System.Console.WriteLine("hello world");
+				}
+			}
+		}
+	}
+
+Java
+====
+
+	import java.io.*;
+	public class Solution {
+		public static void main(String args[] ) throws Exception {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			String line = br.readLine();
+			int N = Integer.parseInt(line);
+			for (int i = 0; i < N; i++) {
+				System.out.println("hello world");
+			}
+		}
+	}
+
+Objective C
+===========
+
+	#import<Foundation/Foundation.h>
+
+	int main(int argc, const char* argv[])
+	{
+		@autoreleasepool {
+			NSInteger n;
+			scanf("%lu", &n);
+
+			for (NSInteger i = 0; i < n; i++) {
+				/*
+				 * Do not use NSLog to print to stdout
+				 */
+				printf("hello world\n");
+			}
+
+			return 0;
+		}
+	}
+
+Javascript
+==========
+
+	function processData(input) {
+		var i;
+		for (i = 0; i < parseInt(input); i++) {
+			console.log("hello world");
+		}
+	}
+
+	process.stdin.resume();
+	process.stdin.setEncoding("ascii");
+	_input = "";
+	process.stdin.on("data", function (input) {
+		_input += input;
+	});
+
+	process.stdin.on("end", function () {
+	   processData(_input);
+	});
+
+Python
+======
+
+	N = int(raw_input())
+	for i in xrange(N):
+		print "hello world"
+
+Ruby
+====
+
+	N = gets
+	1.step(N.to_i, 1) { |i| print "hello world\n" }
+
+PHP
+===
+
+	<?php
+	fscanf(STDIN, "%d\n", $number);
+
+	for ( $i = 0; $i < $number; $i++) {
+		echo "hello world\n";
+	}
+
+Lua
+===
+
+	N = io.read ()
+	for i = 1, tonumber(N), 1 do
+		print("hello world")
+	end
+
+Common Lisp (SBCL)
+==================
+
+	(let ((n (parse-integer (read-line))))
+		(dotimes (i n)
+			(format t "hello world~%")))
+
+ERLANG
+======
+
+-module(solution).
+-export([main/0]).
+
+	main() ->
+		{ok, [Num]} = io:fread("", "~d"),
+		print_hello(Num).
+
+	print_hello(0) ->
+		0;
+	print_hello(N) ->
+		io:format("Hello World~n"),
+		print_hello(N - 1).
+
+Go
+==
+
+	/* Contributed by https://www.hackerrank.com/rciovati */
+
+	package main
+
+	import (
+		"fmt"
+	)
+
+	func main() {
+		times := readInt()
+		for i := 0; i < times; i++ {
+			fmt.Println("hello world")
+		}
+	}
+
+	func readInt() int {
+		var n int
+		_, err := fmt.Scanf("%d", &n)
+
+		if err != nil {
+			panic(err)
+		}
+
+		return n
+	}
+
+Clojure
+=======
+
+	/* Contributed by https://www.hackerrank.com/dmarjenburgh */
+
+	(let [n (Integer/parseInt (read-line))]
+	  (dotimes [_ n]
+		  (println "hello world")))
+
+R
+=
+
+	f <- file("stdin")
+	on.exit(close(f))
+
+	T <- readLines(f)
+	T <- strsplit(T, " ")
+	Ti <- as.numeric(T[[1]])
+
+	for(i in 1:Ti){
+		write("hello world", stdout())
+	}
+
+Swift
+=====
+
+	import Foundation
+
+	let n = Int(readLine()!)!
+
+	for i in 1...n {
+		print("hello world")
+	}
+
