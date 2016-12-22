@@ -53,77 +53,56 @@
 
 // ---------------------------- locked code below ------------------------------
 
-#include <map>
-#include <set>
-#include <list>
-#include <cmath>
-#include <ctime>
-#include <deque>
-#include <queue>
-#include <stack>
-#include <string>
-#include <bitset>
-#include <cstdio>
-#include <limits>
-#include <vector>
-#include <climits>
-#include <cstring>
-#include <cstdlib>
-#include <fstream>
-#include <numeric>
-#include <sstream>
-#include <iostream>
-#include <algorithm>
-#include <unordered_map>
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
 
-///
-#include <regex>
-#include <string.h>
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
 
-std::multiset<std::string> result;
-///
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
 
-using namespace std;
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();    
+});
 
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
 
-int main(){
+/////////////// ignore above this line ////////////////////
 
 // ---------------------------- locked code above ------------------------------
 
 //###################################################################
-cout << "to run: ./day-28-regex-patterns < day-28-regex-patterns.txt" << endl;
+console.log( "to run: nodejs ./day-28-regex-patterns.js < day-28-regex-patterns.txt" );
 //###################################################################
 
-    int N;
-    cin >> N;
-    for(int a0 = 0; a0 < N; a0++){
-        string firstName;
-        string emailID;
-        cin >> firstName >> emailID;
+function main() {
+	var results=[];
+    var N = parseInt(readLine());
+    for(var a0 = 0; a0 < N; a0++){
+        var firstName_temp = readLine().split(' ');
+        var firstName = firstName_temp[0];
+        var emailID = firstName_temp[1];
 
-/* The correct solution is to use C++ regex  
- * 
- * however, regex doesNOT work with g++ 4..8.4 on bash for ubuntu for windows 10
- */
-//		std::regex pattern ("@gmail.com$");
-//		bool m = std::regex_search (emailID,pattern);
-
-		char *pattern = (char*) "@gmail.com";
-		bool m = (strstr(emailID.c_str(), pattern) != NULL);
-		if (m == true) {
-			// cout << "emailID: " << emailID << endl;
-			result.insert(firstName);
+		// search returns index into the string
+		if (emailID.search(/@gmail.com$/)>0) {
+			results.push(firstName);
 		}
     }
 
-	for (std::multiset<std::string>::iterator it = result.begin(); it != result.end(); it++)
-	{
-		cout << *it << endl;
+	// process.stdout.write(results.sort()+"\n");
+	results.sort();
+	for (var i=0; i<results.length; i++) {
+		process.stdout.write(results[i]+"\n");
 	}
 
 
 // ---------------------------- locked code below ------------------------------
 
-    return 0;
 }
 
