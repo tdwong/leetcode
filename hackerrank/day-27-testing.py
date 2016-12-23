@@ -18,7 +18,8 @@
 # ||  
 # ||  A Discrete Mathematics professor has a class of N students. Frustrated with their lack of
 # ||  discipline, the professor decides to cancel class if fewer than k students are present when
-# ||  class starts. Given the arrival time of each student, determine if the class is canceled.
+# ||  class starts. Given the arrival time of each student, determine if the class is canceled.
+
 # ||  
 # ||  Input Format
 # ||  
@@ -125,6 +126,7 @@
 
 
 
+"""
 # #of_testcases
 print 5
 
@@ -157,8 +159,25 @@ print 0,0,0,0,0,-9, -1,3, -4, -2
 print 10, 3
     # student_arrival_time
 print 0,5,12,5,7,9, -1,-3, 4, 2
+"""
 
 
+testcases = [
+	[ 10, 5, [ 0,0,0,7,5,-9, 1,3, 4, 2 ] ],          # (YES: cancelled)
+	[ 10, 4, [ 0,0,0,0,0,9, -1, -1, 2, 1 ] ],            # (NO: not cancelled)
+	[ 10, 10, [ 0,0,0,0,0,9, -1,3, 4, 2 ] ],             # (YES: cancelled)
+	[ 10, 9, [ 0,0,0,0,0,-9, -1,3, -4, -2 ] ],           # (NO: not cancelled)
+	[ 10, 3, [ 0,5,12,5,7,9, -1,-3, 4, 2 ] ],            # (YES: cancelled)
+]
+
+# #of_testcases
+print len(testcases)
+
+# print each test case
+for i in xrange(len(testcases)):
+    n,k,artime=testcases[i]
+    print n,k
+    print reduce(lambda x,y: str(x)+' '+str(y), artime)
 
 #// ---------------------------- locked code below ------------------------------
 
